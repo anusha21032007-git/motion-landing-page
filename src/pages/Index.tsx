@@ -1,18 +1,34 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+"use client";
 
+import React from 'react';
+import Navbar from '@/components/Navbar';
+import ProductScrollCanvas from '@/components/ProductScrollCanvas';
+import TextOverlaySections from '@/components/TextOverlaySections';
+import FloatingDock from '@/components/FloatingDock';
+import BuyNowSection from '@/components/BuyNowSection';
 import { MadeWithDyad } from "@/components/made-with-dyad";
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">
-          Start building your amazing project here!
-        </p>
-      </div>
+    <main className="bg-black min-h-screen text-white font-sans selection:bg-purple-500 selection:text-white">
+      {/* Global Cinematic Noise Texture */}
+      <div className="fixed inset-0 pointer-events-none z-50 opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+      
+      <Navbar />
+      
+      {/* Core Scrollytelling Engine */}
+      <ProductScrollCanvas />
+      
+      {/* Content Layers */}
+      <TextOverlaySections />
+      
+      {/* Bottom Interface */}
+      <BuyNowSection />
+      
+      <FloatingDock />
+      
       <MadeWithDyad />
-    </div>
+    </main>
   );
 };
 
