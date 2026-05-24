@@ -11,60 +11,64 @@ const ProductScrollCanvas = () => {
     offset: ["start start", "end end"]
   });
 
-  // Smooth out the scroll progress for a buttery feel
+  // Extremely smooth spring transition for premium tactile scrolling feel
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 80,
-    damping: 30,
+    stiffness: 90,
+    damping: 26,
     restDelta: 0.001
   });
 
-  // Motion transformations for the laptop
-  const scale = useTransform(smoothProgress, [0, 0.4, 0.7, 1], [0.85, 1.1, 1.3, 1]);
-  const rotateX = useTransform(smoothProgress, [0, 0.3, 0.6], [15, 0, -5]);
-  const opacity = useTransform(smoothProgress, [0, 0.05, 0.95, 1], [0, 1, 1, 0]);
-  const y = useTransform(smoothProgress, [0, 0.2], [80, 0]);
+  // Keeps the laptop perfectly centered and sizes it beautifully throughout all scroll states
+  const scale = useTransform(smoothProgress, [0, 0.25, 0.5, 0.75, 1], [0.9, 1.05, 1.1, 1.05, 0.95]);
+  const rotateX = useTransform(smoothProgress, [0, 0.5, 1], [10, 0, -10]);
+  const rotateY = useTransform(smoothProgress, [0, 0.5, 1], [-5, 0, 5]);
+  
+  // Keeps the laptop fully visible (opacity = 1) across all text overlay sections, only fading gently at the very start/end transitions
+  const opacity = useTransform(smoothProgress, [0, 0.05, 0.95, 1], [0.8, 1, 1, 0.8]);
+  const y = useTransform(smoothProgress, [0, 0.1], [30, 0]);
 
   return (
     <div ref={containerRef} className="h-[600vh] relative">
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
-        {/* Background: Clean Vortex Image */}
+        {/* Background: Clean Galactic Vortex Image */}
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{ 
             backgroundImage: "url('dyad-media://media/calm-eagle-burst/.dyad/media/b9a5bcbe29b237ac220104d47023002f41d3b1972cb0b303c8f775b1f38b03e1.jpeg')",
-            filter: "brightness(0.8)"
+            filter: "brightness(0.75) contrast(1.05)"
           }} 
         />
         
-        {/* Motion: Laptop with UI elements */}
+        {/* Central Display: Premium Laptop with high-contrast UI */}
         <motion.div
           style={{
             scale,
             rotateX,
+            rotateY,
             opacity,
             y,
             perspective: 1200
           }}
-          className="relative z-10 w-full max-w-7xl px-4 flex items-center justify-center"
+          className="relative z-10 w-full max-w-5xl px-4 flex items-center justify-center"
         >
           <img 
             src="dyad-media://media/calm-eagle-burst/.dyad/media/b18010d4d29f37789119c4ad311585a5b2189e03bae3339e5039c59de1a27a71.jpeg" 
             alt="NovaBook Pro Experience" 
-            className="w-full h-auto drop-shadow-[0_0_100px_rgba(139,92,246,0.4)]"
+            className="w-full h-auto drop-shadow-[0_0_80px_rgba(168,85,247,0.4)] pointer-events-none"
           />
           
-          {/* Pulsing atmospheric glow */}
+          {/* Atmospheric ambient purple/blue glow that moves dynamically behind the laptop */}
           <motion.div 
             style={{ 
-              opacity: useTransform(smoothProgress, [0.2, 0.5], [0, 0.3]),
-              scale: useTransform(smoothProgress, [0.2, 0.5], [0.8, 1.3])
+              opacity: useTransform(smoothProgress, [0.1, 0.5, 0.9], [0.2, 0.45, 0.2]),
+              scale: useTransform(smoothProgress, [0.1, 0.5, 0.9], [0.9, 1.25, 0.9])
             }}
-            className="absolute inset-0 bg-purple-600/30 blur-[150px] -z-10 rounded-full"
+            className="absolute inset-0 bg-gradient-to-tr from-purple-600/35 to-blue-500/35 blur-[160px] -z-10 rounded-full"
           />
         </motion.div>
 
-        {/* Global Cinematic Noise Overlay */}
-        <div className="absolute inset-0 pointer-events-none opacity-[0.04] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] z-20" />
+        {/* Cinematic film grain overlay */}
+        <div className="absolute inset-0 pointer-events-none opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] z-20" />
       </div>
     </div>
   );
