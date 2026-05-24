@@ -4,7 +4,6 @@ import React from 'react';
 import Navbar from '@/components/Navbar';
 import ProductScrollCanvas from '@/components/ProductScrollCanvas';
 import TextOverlaySections from '@/components/TextOverlaySections';
-import FloatingDock from '@/components/FloatingDock';
 import BuyNowSection from '@/components/BuyNowSection';
 import { MadeWithDyad } from "@/components/made-with-dyad";
 
@@ -26,8 +25,6 @@ const Index = () => {
       
       {/* Conversion & Footer */}
       <BuyNowSection />
-      
-      <FloatingDock />
       
       <MadeWithDyad />
     </main>

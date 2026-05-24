@@ -3,9 +3,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const Section = ({ title, subtitle, description, alignment = "left" }: any) => {
+const Section = ({ id, title, subtitle, description, alignment = "left" }: any) => {
   return (
-    <section className={`h-screen flex items-center px-10 md:px-24 z-10 relative pointer-events-none ${alignment === "right" ? "justify-end text-right" : "justify-start"}`}>
+    <section 
+      id={id} 
+      className={`h-screen flex items-center px-10 md:px-24 z-10 relative pointer-events-none scroll-mt-20 ${alignment === "right" ? "justify-end text-right" : "justify-start"}`}
+    >
       <motion.div 
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -35,6 +38,7 @@ const TextOverlaySections = () => {
       />
       
       <Section 
+        id="display"
         subtitle="Retina XDR"
         title="Pure Vision."
         description="10,000 mini-LEDs. 1,600 nits of peak brightness. The world's most advanced display."
@@ -42,19 +46,22 @@ const TextOverlaySections = () => {
       />
 
       <Section 
+        id="performance"
         subtitle="Performance"
         title="M3 Extreme."
         description="96GB of unified memory. Ray tracing built-in. It doesn't just run apps, it defines them."
       />
 
       <Section 
-        subtitle="Efficiency"
+        id="specs"
+        subtitle="Efficiency & Specs"
         title="All Day. Every Day."
         description="Up to 32 hours of battery life. Go from London to Tokyo and back on a single charge."
         alignment="right"
       />
 
       <Section 
+        id="ecosystem"
         subtitle="Ecosystem"
         title="macOS Nova."
         description="Seamlessly integrated. Universally powerful. Your workspace, redefined by intelligence."
