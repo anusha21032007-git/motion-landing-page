@@ -3,6 +3,10 @@
 import React, { useRef } from 'react';
 import { useScroll, useTransform, motion, useSpring } from 'framer-motion';
 
+// Import images directly so Vite resolves their public URLs correctly
+import backgroundImage from '../../.dyad/media/b9a5bcbe29b237ac220104d47023002f41d3b1972cb0b303c8f775b1f38b03e1.jpeg';
+import laptopImage from '../../.dyad/media/b18010d4d29f37789119c4ad311585a5b2189e03bae3339e5039c59de1a27a71.jpeg';
+
 const ProductScrollCanvas = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   
@@ -34,7 +38,7 @@ const ProductScrollCanvas = () => {
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{ 
-            backgroundImage: "url('dyad-media://media/calm-eagle-burst/.dyad/media/b9a5bcbe29b237ac220104d47023002f41d3b1972cb0b303c8f775b1f38b03e1.jpeg')",
+            backgroundImage: `url(${backgroundImage})`,
             filter: "brightness(0.75) contrast(1.05)"
           }} 
         />
@@ -52,7 +56,7 @@ const ProductScrollCanvas = () => {
           className="relative z-10 w-full max-w-5xl px-4 flex items-center justify-center"
         >
           <img 
-            src="dyad-media://media/calm-eagle-burst/.dyad/media/b18010d4d29f37789119c4ad311585a5b2189e03bae3339e5039c59de1a27a71.jpeg" 
+            src={laptopImage} 
             alt="NovaBook Pro Experience" 
             className="w-full h-auto drop-shadow-[0_0_80px_rgba(168,85,247,0.4)] pointer-events-none"
           />
